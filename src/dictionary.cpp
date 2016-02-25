@@ -1,3 +1,0 @@
-
-// Etymology
-// Pronunciation

@@ -1,10 +1,9 @@
 
-#include <stdio.h>
 #include <stdlib.h>
 
 struct Node {
     struct Node* next;
-    char *data;
+    void *data;
 };
 
 int Length(struct Node* head) {
@@ -31,7 +30,17 @@ Node *Pop(struct Node* head) {
     return newHead;
 }
 
-//push
-//pop
-//add on end
-//concat
+Node *Nth(struct Node* head, int n) {
+    struct Node* current = head;
+    int at = 0;
+    while (at != n) {
+        current = current->next;
+        at++;
+    }
+    return current;
+}
+
+// Reverse in place or create a new list?
+Node *Reverse(struct Node* head) {
+    
+}

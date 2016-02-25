@@ -7,6 +7,8 @@
 
 const char *ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+// TODO: change these to take const char * instead of char[]
+
 char circular_alpha(int n) {
     char c;
     c = (char)ALPHABET[n % 26];
@@ -24,8 +26,6 @@ int word_count(char str[]) {
     return wc;
 }
 
-// pass this in an array and fill it instead. Dislike, but that's the C way.
-// given that would it be better to return a linked list?
 char **Words(char str[]) {
     char **result;
     result = (char **)malloc(sizeof(char *) * word_count(str));
@@ -65,7 +65,7 @@ void Antillipo(char str[], char includes[]) {
 
 
 char *strrev(char str[]) {
-    char *rev;
+    char *rev = (char *) malloc(sizeof(char) * strlen(str));
     int end = strlen(str) - 1;
     for (int i = 0; i < strlen(str); i++) {
         rev[end] = str[i];
@@ -74,10 +74,9 @@ char *strrev(char str[]) {
     return rev;
 }
 
-// Pallindrome
+
 int Pallindrome(char str[]) {
-    char *rev = strrev(str);
-    return (strcmp(str, rev) == 0);
+    return (strcmp(str, strrev(str)) == 0);
 }
 
 // Acronym: create one out of a string (take the first letters);
@@ -101,30 +100,26 @@ int main() {
 
     head = Push(head, are);
     // printf("%s\n", head->data);
-    // printf("%d\n", Length(head));
+    //printf("%d\n", Length(head));
 
+    char pal[] = "dad";
+    printf("%d\n", Pallindrome(pal));
+    
     head = Pop(head);
     
 
     //    printf("%s\n", head->data);
 
-    int i = 0;
-    while (i < 100000000) {
-        char omissions[] = "ab";
-        char *present = (char *)malloc(sizeof(char *));
-        char sen[] = "Finnegan I love you.";
-        Lipogram(sen, omissions, present);
-        if (strlen(present) == 0) {
-            printf("none found.\n");
-        }
-        else {
-            printf("%s\n", present);   
-        }
-        i++;
-    }
-
-    char pal[] = "dad";
-    printf("%d\n", Pallindrome(pal));
+    // char omissions[] = "ab";
+    // char *present = (char *)malloc(sizeof(char *));
+    // char sen[] = "Finnegan I love you.";
+    // Lipogram(sen, omissions, present);
+    // if (strlen(present) == 0) {
+    //     printf("none found.\n");
+    // }
+    // else {
+    //     printf("%s\n", present);   
+    // }
 
 
     return 0;
